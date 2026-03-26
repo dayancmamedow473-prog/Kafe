@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="tk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kafe Sargyt</title>
+    <style>
+        body { font-family: Arial; max-width: 600px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+        h1 { text-align: center; color: #333; }
+        .nahar { background: white; padding: 15px; margin: 10px 0; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .nahar-ady { font-size: 18px; font-weight: bold; }
+        .wagt { color: #888; font-size: 14px; }
+        .sany { display: flex; align-items: center; gap: 10px; }
+        .sany button { width: 35px; height: 35px; border: none; background: #ff6b35; color: white; border-radius: 50%; font-size: 20px; cursor: pointer; }
+        .sany span { font-size: 18px; font-weight: bold; min-width: 20px; text-align: center; }
+        .stol { background: white; padding: 15px; border-radius: 10px; margin: 10px 0; }
+        .stol input { width: 100%; padding: 10px; font-size: 16px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        .sargyt-btn { width: 100%; padding: 15px; background: #ff6b35; color: white; border: none; border-radius: 10px; font-size: 18px; cursor: pointer; margin-top: 10px; }
+        .jemi { background: white; padding: 15px; border-radius: 10px; margin: 10px 0; font-size: 18px; font-weight: bold; text-align: center; }
+    </style>
+</head>
+<body>
+    <h1>🍽️ Kafe Menýu</h1>
+    
+    <div class="stol">
+        <input type="number" id="stol" placeholder="Stol belgiňizi ýazyň" min="1">
+    </div>
+
+    <div class="nahar">
+        <div>
+            <div class="nahar-ady">🌯 Döner</div>
+            <div class="wagt">⏱ 15 minut</div>
+        </div>
+        <div class="sany">
+            <button onclick="azalt('doner')">−</button>
+            <span id="doner">0</span>
+            <button onclick="goshun('doner')">+</button>
+        </div>
+    </div>
+
+    <div class="nahar">
+        <div>
+            <div class="nahar-ady">🥤 Kola</div>
+            <div class="wagt">⏱ 2 minut</div>
+        </div>
+        <div class="sany">
+            <button onclick="azalt('kola')">−</button>
+            <span id="kola">0</span>
+            <button onclick="goshun('kola')">+</button>
+        </div>
+    </div>
+
+    <div class="nahar">
+        <div>
+            <div class="nahar-ady">🍮 Baklawa</div>
+            <div class="wagt">⏱ 25 minut</div>
+        </div>
+        <div class="sany">
+            <button onclick="azalt('baklawa')">−</button>
+            <span id="baklawa">0</span>
+            <button onclick="goshun('baklawa')">+</button>
+        </div>
+    </div>
+
+    <div class="nahar">
+        <div>
+            <div class="nahar-ady">☕ Kofe</div>
+            <div class="wagt">⏱ 10 minut</div>
+        </div>
+        <div class="sany">
+            <button onclick="azalt('kofe')">−</button>
+            <span id="kofe">0</span>
+            <button onclick="goshun('kofe')">+</button>
+        </div>
+    </div>
+
+    <div class="jemi">Jemi: <span id="jemi">0</span> sany nahar</div>
+
+    <button class="sargyt-btn" onclick="sargytBer()">✅ Sargyt Ber</button>
+
+    <script>
+        var sanylar = { doner: 0, kola: 0, baklawa: 0, kofe: 0 };
+
+        function goshun(at) {
+            sanylar[at]++;
+            document.getElementById(at).innerText = sanylar[at];
+            jemiGuncelle();
+        }
+
+        function azalt(at) {
+            if (sanylar[at] > 0) {
+                sanylar[at]--;
+                document.getElementById(at).innerText = sanylar[at];
+                jemiGuncelle();
+            }
+        }
+
+        function jemiGuncelle() {
+            var jemi = 0;
+            for (var key in sanylar) jemi += sanylar[key];
+            document.getElementById('jemi').innerText = jemi;
+        }
+
+        function sargytBer() {
+            var stol = document.getElementById('stol').value;
+            if (!stol) { alert('Stol belgiňizi ýazyň!'); return; }
+            var jemi = 0;
+            for (var key in sanylar) jemi += sanylar[key];
+            if (jemi === 0) { alert('Nahar saýlaň!'); return; }
+            
+            var habar = 'Stol: ' + stol + '\n';
+            if (sanylar.doner > 0) habar += 'Döner: ' + sanylar.doner + '\n';
+            if (sanylar.kola > 0) habar += 'Kola: ' + sanylar.kola + '\n';
+            if (sanylar.baklawa > 0) habar += 'Baklawa: ' + sanylar.baklawa + '\n';
+            if (sanylar.kofe > 0) habar += 'Kofe: ' + sanylar.kofe + '\n';
+            
+            alert('Sargydyňyz kabul edildi!\n\n' + habar);
+        }
+    </script>
+</body>
+</html>
