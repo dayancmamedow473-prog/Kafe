@@ -1,121 +1,762 @@
 <!DOCTYPE html>
 <html lang="tk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kafe Sargyt</title>
-    <style>
-        body { font-family: Arial; max-width: 600px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
-        h1 { text-align: center; color: #333; }
-        .nahar { background: white; padding: 15px; margin: 10px 0; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; }
-        .nahar-ady { font-size: 18px; font-weight: bold; }
-        .wagt { color: #888; font-size: 14px; }
-        .sany { display: flex; align-items: center; gap: 10px; }
-        .sany button { width: 35px; height: 35px; border: none; background: #ff6b35; color: white; border-radius: 50%; font-size: 20px; cursor: pointer; }
-        .sany span { font-size: 18px; font-weight: bold; min-width: 20px; text-align: center; }
-        .stol { background: white; padding: 15px; border-radius: 10px; margin: 10px 0; }
-        .stol input { width: 100%; padding: 10px; font-size: 16px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
-        .sargyt-btn { width: 100%; padding: 15px; background: #ff6b35; color: white; border: none; border-radius: 10px; font-size: 18px; cursor: pointer; margin-top: 10px; }
-        .jemi { background: white; padding: 15px; border-radius: 10px; margin: 10px 0; font-size: 18px; font-weight: bold; text-align: center; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sevilya Kafe</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --dark: #1a1208;
+    --dark2: #2c1f0e;
+    --cream: #f5efe4;
+    --text: #3a2c1a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Raleway', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--dark);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80') center/cover;
+    opacity: 0.35;
+  }
+  .hero-content {
+    position: relative;
+    text-align: center;
+  }
+  .hero-subtitle {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    letter-spacing: 6px;
+    font-size: 11px;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero-line {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 14px auto 0;
+  }
+
+  /* STOL */
+  .stol-wrap {
+    background: var(--dark2);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+  }
+  .stol-wrap label {
+    color: var(--gold-light);
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .stol-wrap input {
+    width: 80px;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid var(--gold);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 15px;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    outline: none;
+  }
+  .stol-wrap input::placeholder { color: rgba(255,255,255,0.3); }
+
+  /* SECTION */
+  .section {
+    margin: 0;
+  }
+  .section-hero {
+    position: relative;
+    height: 180px;
+    display: flex;
+    align-items: flex-end;
+    padding: 24px 24px;
+    overflow: hidden;
+  }
+  .section-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.55;
+    transition: opacity 0.3s;
+  }
+  .section-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26,18,8,0.95) 0%, rgba(26,18,8,0.2) 100%);
+  }
+  .sushi-bg::before { background-image: url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=800&q=80'); }
+  .kebab-bg::before { background-image: url('https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=800&q=80'); }
+  .doner-bg::before { background-image: url('https://images.unsplash.com/photo-1633321702518-7feccafb94d5?w=800&q=80'); }
+  .icecek-bg::before { background-image: url('https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800&q=80'); }
+
+  .section-title-wrap {
+    position: relative;
+    z-index: 1;
+  }
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+  }
+
+  /* ITEMS */
+  .items {
+    background: #fff;
+    padding: 8px 0 16px;
+  }
+  .item {
+    display: flex;
+    align-items: center;
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+    gap: 12px;
+    transition: background 0.2s;
+  }
+  .item:last-child { border-bottom: none; }
+  .item:active { background: rgba(201,168,76,0.05); }
+  .item-info { flex: 1; }
+  .item-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 2px;
+  }
+  .item-time {
+    font-size: 11px;
+    color: #999;
+    letter-spacing: 1px;
+  }
+  .item-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gold);
+    white-space: nowrap;
+    margin-right: 12px;
+  }
+  .counter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .counter button {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: var(--dark);
+    color: var(--gold);
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+  .counter button:active { background: var(--gold); color: var(--dark); }
+  .counter span {
+    font-size: 16px;
+    font-weight: 700;
+    min-width: 20px;
+    text-align: center;
+    color: var(--dark);
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* FOOTER */
+  .footer-bar {
+    position: sticky;
+    bottom: 0;
+    background: var(--dark);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+    z-index: 100;
+  }
+  .jemi-info {
+    color: #fff;
+  }
+  .jemi-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .jemi-baha {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+  .sargyt-btn {
+    background: var(--gold);
+    color: var(--dark);
+    border: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .sargyt-btn:active { transform: scale(0.97); background: var(--gold-light); }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px 24px;
+    width: 100%;
+    max-width: 360px;
+    text-align: center;
+  }
+  .modal-icon { font-size: 48px; margin-bottom: 12px; }
+  .modal h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+  .modal p { color: #777; font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
+  .modal-items { text-align: left; background: var(--cream); border-radius: 10px; padding: 14px; margin-bottom: 20px; }
+  .modal-item { font-size: 14px; color: var(--text); padding: 4px 0; border-bottom: 1px solid rgba(0,0,0,0.06); }
+  .modal-item:last-child { border-bottom: none; }
+  .modal-total { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--gold); margin-top: 8px; }
+  .modal-close {
+    background: var(--dark);
+    color: var(--gold);
+    border: none;
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    letter-spacing: 1px;
+  }
+</style>
 </head>
 <body>
-    <h1>🍽️ Kafe Menýu</h1>
-    
-    <div class="stol">
-        <input type="number" id="stol" placeholder="Stol belgiňizi ýazyň" min="1">
+
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-subtitle">Hoş Geldiniz • Hoş Geldiňiz</div>
+    <h1><span>Sevilya</span> Kafe</h1>
+    <div class="hero-line"></div>
+  </div>
+</div>
+
+<div class="stol-wrap">
+  <label>Stol №</label>
+  <input type="number" id="stol" placeholder="1" min="1">
+</div>
+
+<!-- SUSHİ -->
+<div class="section">
+  <div class="section-hero sushi-bg">
+    <div class="section-title-wrap">
+      <div class="section-label">Japanese</div>
+      <div class="section-title">Suşi Menýu</div>
     </div>
-
-    <div class="nahar">
-        <div>
-            <div class="nahar-ady">🌯 Döner</div>
-            <div class="wagt">⏱ 15 minut</div>
-        </div>
-        <div class="sany">
-            <button onclick="azalt('doner')">−</button>
-            <span id="doner">0</span>
-            <button onclick="goshun('doner')">+</button>
-        </div>
+  </div>
+  <div class="items">
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name">Nigiri</div>
+        <div class="item-time">⏱ 15 min</div>
+      </div>
+      <div class="item-price">25 ₼</div>
+      <div class="counter">
+        <button onclick="azalt('nigiri')">−</button>
+        <span id="nigiri">0</span>
+        <button onclick="goshun('nigiri',25)">+</button>
+      </div>
     </div>
-
-    <div class="nahar">
-        <div>
-            <div class="nahar-ady">🥤 Kola</div>
-            <div class="wagt">⏱ 2 minut</div>
-        </div>
-        <div class="sany">
-            <button onclick="azalt('kola')">−</button>
-            <span id="kola">0</span>
-            <button onclick="goshun('kola')">+</button>
-        </div>
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name">Maki</div>
+        <div class="item-time">⏱ 15 min</div>
+      </div>
+      <div class="item-price">30 ₼</div>
+      <div class="counter">
+        <button onclick="azalt('maki')">−</button>
+        <span id="maki">0</span>
+        <button onclick="goshun('maki',30)">+</button>
+      </div>
     </div>
-
-    <div class="nahar">
-        <div>
-            <div class="nahar-ady">🍮 Baklawa</div>
-            <div class="wagt">⏱ 25 minut</div>
-        </div>
-        <div class="sany">
-            <button onclick="azalt('baklawa')">−</button>
-            <span id="baklawa">0</span>
-            <button onclick="goshun('baklawa')">+</button>
-        </div>
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name">Sashimi</div>
+        <div class="item-time">⏱ 15 min</div>
+      </div>
+      <div class="item-price">25 ₼</div>
+      <div class="counter">
+        <button onclick="azalt('sashimi')">−</button>
+        <span id="sashimi">0</span>
+        <button onclick="goshun('sashimi',25)">+</button>
+      </div>
     </div>
-
-    <div class="nahar">
-        <div>
-            <div class="nahar-ady">☕ Kofe</div>
-            <div class="wagt">⏱ 10 minut</div>
-        </div>
-        <div class="sany">
-            <button onclick="azalt('kofe')">−</button>
-            <span id="kofe">0</span>
-            <button onclick="goshun('kofe')">+</button>
-        </div>
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name">Temaki</div>
+        <div class="item-time">⏱ 20 min</div>
+      </div>
+      <div class="item-price">35 ₼</div>
+      <div class="counter">
+        <button onclick="azalt('temaki')">−</button>
+        <span id="temaki">0</span>
+        <button onclick="goshun('temaki',35)">+</button>
+      </div>
     </div>
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name">California Roll</div>
+        <div class="item-time">⏱ 20 min</div>
+      </div>
+      <div class="item-price">30 ₼</div>
+      <div class="counter">
+        <button onclick="azalt('california')">−</button>
+        <span id="california">0</span>
+        <button onclick="goshun('california',30)">+</button>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name">Ebi Nigiri</div>
+        <div class="item-time">⏱ 15 min</div>
+      </div>
+      <div class="item-price">30 ₼</div>
+      <div class="counter">
+        <button onclick="azalt('ebi')">−</button>
+        <span id="ebi">0</span>
+        <button onclick="goshun('ebi',30)">+</button>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name">Dragon Roll</div>
+        <div class="item-time">⏱ 25 min</div>
+      </div>
+      <div class="item-price">50 ₼</div>
+      <div class="counter">
+        <button onclick="azalt('dragon')">−</button>
+        <span id="dragon">0</span>
+        <button onclick="goshun('dragon',50)">+</button>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name">Gunkan</div>
+        <div class="item-time">⏱ 15 min</div>
+      </div>
+      <div class="item-price">25 ₼</div>
+      <div class="counter">
+        <button onclick="azalt('gunkan')">−</button>
+        <span id="gunkan">0</span>
+        <button onclick="goshun('gunkan',25)">+</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <div class="jemi">Jemi: <span id="jemi">0</span> sany nahar</div>
+<!-- KEBAB -->
+<div class="section">
+  <div class="section-hero kebab-bg">
+    <div class="section-title-wrap">
+      <div class="section-label">Grill</div>
+      <div class="section-title">Kebap Menýu</div>
+    </div>
+  </div>
+  <div class="items">
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name">Adana Kebaby</div>
+        <div class="item-time">⏱ 20 min • 🌶 Ajyly</div>
+      </div>
+      <div class="item-price">30 ₼</div>
+      <div class="counter">
+        <button onclick="azalt('adana')">−</button>
+        <span id="adana">0</span>
+        <button onclick="goshun('adana',30)">+</button>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name">Urfa Kebaby</div>
+        <div class="item-time">⏱ 20 min • Ajysyz</div>
+      </div>
+      <div class="item-price">30 ₼</div>
+      <div class="counter">
+        <button onclick="azalt('urfa')">−</button>
+        <span id="urfa">0</span>
+        <button onclick="goshun('urfa',30)">+</button>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name">Beyti Kebaby</div>
+        <div class="item-time">⏱ 20 min</div>
+      </div>
+      <div class="item-price">20 ₼</div>
+      <div class="counter">
+        <button onclick="azalt('beyti')">−</button>
+        <span id="beyti">0</span>
+        <button onclick="goshun('beyti',20)">+</button>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name">Kaşarly Lüle</div>
+        <div class="item-time">⏱ 20 min</div>
+      </div>
+      <div class="item-price">25 ₼</div>
+      <div class="counter">
+        <button onclick="azalt('kasarli')">−</button>
+        <span id="kasarli">0</span>
+        <button onclick="goshun('kasarli',25)">+</button>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name">Sebzeli Lüle</div>
+        <div class="item-time">⏱ 20 min</div>
+      </div>
+      <div class="item-price">30 ₼</div>
+      <div class="counter">
+        <button onclick="azalt('sebzeli')">−</button>
+        <span id="sebzeli">0</span>
+        <button onclick="goshun('sebzeli',30)">+</button>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name">Pisse-Fystykly Lüle</div>
+        <div class="item-time">⏱ 20 min</div>
+      </div>
+      <div class="item-price">25 ₼</div>
+      <div class="counter">
+        <button onclick="azalt('pisse')">−</button>
+        <span id="pisse">0</span>
+        <button onclick="goshun('pisse',25)">+</button>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name">Sada Türkmen Lüle</div>
+        <div class="item-time">⏱ 20 min</div>
+      </div>
+      <div class="item-price">30 ₼</div>
+      <div class="counter">
+        <button onclick="azalt('sada')">−</button>
+        <span id="sada">0</span>
+        <button onclick="goshun('sada',30)">+</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <button class="sargyt-btn" onclick="sargytBer()">✅ Sargyt Ber</button>
+<!-- DONER -->
+<div class="section">
+  <div class="section-hero doner-bg">
+    <div class="section-title-wrap">
+      <div class="section-label">Street Food</div>
+      <div class="section-title">Döner Menýu</div>
+    </div>
+  </div>
+  <div class="items">
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name">Garyşyk Döner</div>
+        <div class="item-time">⏱ 15 min • Et-Towuk</div>
+      </div>
+      <div class="item-price">30 ₼</div>
+      <div class="counter">
+        <button onclick="azalt('garysyk')">−</button>
+        <span id="garysyk">0</span>
+        <button onclick="goshun('garysyk',30)">+</button>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name">Iskender Döner</div>
+        <div class="item-time">⏱ 20 min • Etli, Mesgeli</div>
+      </div>
+      <div class="item-price">45 ₼</div>
+      <div class="counter">
+        <button onclick="azalt('iskender')">−</button>
+        <span id="iskender">0</span>
+        <button onclick="goshun('iskender',45)">+</button>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name">Towukly Iskender</div>
+        <div class="item-time">⏱ 20 min</div>
+      </div>
+      <div class="item-price">35 ₼</div>
+      <div class="counter">
+        <button onclick="azalt('towukiskender')">−</button>
+        <span id="towukiskender">0</span>
+        <button onclick="goshun('towukiskender',35)">+</button>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name">Lawaşda Et Dürüm</div>
+        <div class="item-time">⏱ 15 min</div>
+      </div>
+      <div class="item-price">40 ₼</div>
+      <div class="counter">
+        <button onclick="azalt('lawashet')">−</button>
+        <span id="lawashet">0</span>
+        <button onclick="goshun('lawashet',40)">+</button>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name">Lawaşda Towuk Dürüm</div>
+        <div class="item-time">⏱ 15 min</div>
+      </div>
+      <div class="item-price">30 ₼</div>
+      <div class="counter">
+        <button onclick="azalt('lawashtowuk')">−</button>
+        <span id="lawashtowuk">0</span>
+        <button onclick="goshun('lawashtowuk',30)">+</button>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name">Çörekde Et Döner</div>
+        <div class="item-time">⏱ 15 min</div>
+      </div>
+      <div class="item-price">30 ₼</div>
+      <div class="counter">
+        <button onclick="azalt('corekdenet')">−</button>
+        <span id="corekdenet">0</span>
+        <button onclick="goshun('corekdenet',30)">+</button>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name">Çörekde Towuk Döner</div>
+        <div class="item-time">⏱ 15 min</div>
+      </div>
+      <div class="item-price">25 ₼</div>
+      <div class="counter">
+        <button onclick="azalt('corekdetowuk')">−</button>
+        <span id="corekdetowuk">0</span>
+        <button onclick="goshun('corekdetowuk',25)">+</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <script>
-        var sanylar = { doner: 0, kola: 0, baklawa: 0, kofe: 0 };
+<!-- İÇECEK -->
+<div class="section">
+  <div class="section-hero icecek-bg">
+    <div class="section-title-wrap">
+      <div class="section-label">Beverages</div>
+      <div class="section-title">Içgiler</div>
+    </div>
+  </div>
+  <div class="items">
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name">Kola</div>
+        <div class="item-time">1 litr • Sowuk</div>
+      </div>
+      <div class="item-price">20 ₼</div>
+      <div class="counter">
+        <button onclick="azalt('kola')">−</button>
+        <span id="kola">0</span>
+        <button onclick="goshun('kola',20)">+</button>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name">Fanta</div>
+        <div class="item-time">Sowuk</div>
+      </div>
+      <div class="item-price">20 ₼</div>
+      <div class="counter">
+        <button onclick="azalt('fanta')">−</button>
+        <span id="fanta">0</span>
+        <button onclick="goshun('fanta',20)">+</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-        function goshun(at) {
-            sanylar[at]++;
-            document.getElementById(at).innerText = sanylar[at];
-            jemiGuncelle();
-        }
+<div style="height:80px"></div>
 
-        function azalt(at) {
-            if (sanylar[at] > 0) {
-                sanylar[at]--;
-                document.getElementById(at).innerText = sanylar[at];
-                jemiGuncelle();
-            }
-        }
+<!-- FOOTER -->
+<div class="footer-bar">
+  <div class="jemi-info">
+    <div class="jemi-label">Jemi</div>
+    <div class="jemi-baha"><span id="jemi-baha">0</span> ₼</div>
+  </div>
+  <button class="sargyt-btn" onclick="sargytBer()">Sargyt Ber</button>
+</div>
 
-        function jemiGuncelle() {
-            var jemi = 0;
-            for (var key in sanylar) jemi += sanylar[key];
-            document.getElementById('jemi').innerText = jemi;
-        }
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-icon">✅</div>
+    <h2>Sargyt Kabul Edildi!</h2>
+    <p>Ofisant ýakyn wagtda size gelýär.</p>
+    <div class="modal-items" id="modal-items"></div>
+    <button class="modal-close" onclick="modalYap()">Tamam</button>
+  </div>
+</div>
 
-        function sargytBer() {
-            var stol = document.getElementById('stol').value;
-            if (!stol) { alert('Stol belgiňizi ýazyň!'); return; }
-            var jemi = 0;
-            for (var key in sanylar) jemi += sanylar[key];
-            if (jemi === 0) { alert('Nahar saýlaň!'); return; }
-            
-            var habar = 'Stol: ' + stol + '\n';
-            if (sanylar.doner > 0) habar += 'Döner: ' + sanylar.doner + '\n';
-            if (sanylar.kola > 0) habar += 'Kola: ' + sanylar.kola + '\n';
-            if (sanylar.baklawa > 0) habar += 'Baklawa: ' + sanylar.baklawa + '\n';
-            if (sanylar.kofe > 0) habar += 'Kofe: ' + sanylar.kofe + '\n';
-            
-            alert('Sargydyňyz kabul edildi!\n\n' + habar);
-        }
-    </script>
+<script>
+var menyu = {
+  nigiri: {at:'Nigiri', baha:25, sany:0},
+  maki: {at:'Maki', baha:30, sany:0},
+  sashimi: {at:'Sashimi', baha:25, sany:0},
+  temaki: {at:'Temaki', baha:35, sany:0},
+  california: {at:'California Roll', baha:30, sany:0},
+  ebi: {at:'Ebi Nigiri', baha:30, sany:0},
+  dragon: {at:'Dragon Roll', baha:50, sany:0},
+  gunkan: {at:'Gunkan', baha:25, sany:0},
+  adana: {at:'Adana Kebaby', baha:30, sany:0},
+  urfa: {at:'Urfa Kebaby', baha:30, sany:0},
+  beyti: {at:'Beyti Kebaby', baha:20, sany:0},
+  kasarli: {at:'Kaşarly Lüle', baha:25, sany:0},
+  sebzeli: {at:'Sebzeli Lüle', baha:30, sany:0},
+  pisse: {at:'Pisse-Fystykly Lüle', baha:25, sany:0},
+  sada: {at:'Sada Türkmen Lüle', baha:30, sany:0},
+  garysyk: {at:'Garyşyk Döner', baha:30, sany:0},
+  iskender: {at:'Iskender Döner', baha:45, sany:0},
+  towukiskender: {at:'Towukly Iskender', baha:35, sany:0},
+  lawashet: {at:'Lawaşda Et Dürüm', baha:40, sany:0},
+  lawashtowuk: {at:'Lawaşda Towuk Dürüm', baha:30, sany:0},
+  corekdenet: {at:'Çörekde Et Döner', baha:30, sany:0},
+  corekdetowuk: {at:'Çörekde Towuk Döner', baha:25, sany:0},
+  kola: {at:'Kola', baha:20, sany:0},
+  fanta: {at:'Fanta', baha:20, sany:0}
+};
+
+function goshun(id, baha) {
+  menyu[id].sany++;
+  document.getElementById(id).innerText = menyu[id].sany;
+  jemiGuncelle();
+}
+
+function azalt(id) {
+  if(menyu[id].sany > 0) {
+    menyu[id].sany--;
+    document.getElementById(id).innerText = menyu[id].sany;
+    jemiGuncelle();
+  }
+}
+
+function jemiGuncelle() {
+  var jemi = 0;
+  for(var k in menyu) jemi += menyu[k].baha * menyu[k].sany;
+  document.getElementById('jemi-baha').innerText = jemi;
+}
+
+function sargytBer() {
+  var stol = document.getElementById('stol').value;
+  if(!stol) { alert('Stol belgiňizi ýazyň!'); return; }
+  var jemi = 0;
+  for(var k in menyu) jemi += menyu[k].baha * menyu[k].sany;
+  if(jemi === 0) { alert('Nahar saýlaň!'); return; }
+
+  var html = '<div style="font-weight:700;margin-bottom:8px;color:#1a1208;">Stol №' + stol + '</div>';
+  for(var k in menyu) {
+    if(menyu[k].sany > 0) {
+      html += '<div class="modal-item">' + menyu[k].at + ' × ' + menyu[k].sany + ' <span style="float:right;color:#c9a84c;">' + (menyu[k].baha * menyu[k].sany) + ' ₼</span></div>';
+    }
+  }
+  html += '<div class="modal-total" style="margin-top:10px;text-align:right;">Jemi: ' + jemi + ' ₼</div>';
+  document.getElementById('modal-items').innerHTML = html;
+  document.getElementById('modal').classList.add('show');
+}
+
+function modalYap() {
+  document.getElementById('modal').classList.remove('show');
+  for(var k in menyu) {
+    menyu[k].sany = 0;
+    document.getElementById(k).innerText = 0;
+  }
+  document.getElementById('jemi-baha').innerText = 0;
+  document.getElementById('stol').value = '';
+}
+</script>
 </body>
 </html>
