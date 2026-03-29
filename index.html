@@ -478,7 +478,7 @@ function sargytBer() {
   document.getElementById('modal').classList.add('show');
 
   fetch(SHEETS_URL, {
-    method: 'POST',
+    method: 'GET',
     body: JSON.stringify({stol: stol, sargyt: sargytText, jemi: jemi})
   }).catch(function(e){ console.log('Sheets error:', e); });
 }
