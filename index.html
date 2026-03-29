@@ -148,11 +148,9 @@ function sargytBer(){
   html+='<div class="modal-total">Jemi: '+jemi+' M</div>';
   document.getElementById('modal-items').innerHTML=html;
   document.getElementById('modal').classList.add('show');
-  var form=document.createElement('form');
-  form.method='POST';form.action=SCRIPT_URL;form.target='hidden-iframe';
-  var fields={stol:stol,sargyt:sargytText,jemi:String(jemi)};
-  for(var f in fields){var inp=document.createElement('input');inp.type='hidden';inp.name=f;inp.value=fields[f];form.appendChild(inp)}
-  document.body.appendChild(form);form.submit();document.body.removeChild(form);
+  var url=SCRIPT_URL+'?stol='+encodeURIComponent(stol)+'&sargyt='+encodeURIComponent(sargytText)+'&jemi='+encodeURIComponent(String(jemi));
+  var img=new Image();
+  img.src=url;
 }
 function modalYap(){
   document.getElementById('modal').classList.remove('show');
