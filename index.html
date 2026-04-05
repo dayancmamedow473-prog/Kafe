@@ -113,6 +113,12 @@ body{font-family:'Raleway',sans-serif;background:var(--cream);color:var(--text);
     <div class="item"><div class="item-info"><div class="item-name">Fanta</div><div class="item-time">Sowuk</div></div><div class="item-price">20 M</div><div class="counter"><button onclick="azalt('fanta')">-</button><span id="fanta">0</span><button onclick="goshun('fanta',20)">+</button></div></div>
   </div>
 </div>
+<div class="section">
+  <div class="section-hero" style="background:var(--dark)"><div class="section-hero" style="position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800&q=80') center/cover;opacity:0.55"></div><div class="section-title-wrap" style="position:relative;z-index:1"><div class="section-label">Desserts</div><div class="section-title">Süyjülikler</div></div></div>
+  <div class="items">
+    <div class="item"><div class="item-info"><div class="item-name">Avokado Tatly</div><div class="item-time">15 min</div></div><div class="item-price">27 M</div><div class="counter"><button onclick="azalt('avokado')">-</button><span id="avokado">0</span><button onclick="goshun('avokado',27)">+</button></div></div>
+  </div>
+</div>
 <div style="height:80px"></div>
 <div class="footer-bar">
   <div>
@@ -133,7 +139,11 @@ body{font-family:'Raleway',sans-serif;background:var(--cream);color:var(--text);
 <iframe id="hidden-iframe" name="hidden-iframe" style="display:none"></iframe>
 <script>
 var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwlb-acrBmE8siktwNR7afBdHv42oILQ06ZmobyK0QP-imwAYcLMU9_POS4Ghfrv48/exec';
-var menyu={nigiri:{at:'Nigiri',baha:25,sany:0},maki:{at:'Maki',baha:30,sany:0},sashimi:{at:'Sashimi',baha:25,sany:0},temaki:{at:'Temaki',baha:35,sany:0},california:{at:'California Roll',baha:30,sany:0},ebi:{at:'Ebi Nigiri',baha:30,sany:0},dragon:{at:'Dragon Roll',baha:50,sany:0},gunkan:{at:'Gunkan',baha:25,sany:0},adana:{at:'Adana Kebaby',baha:30,sany:0},urfa:{at:'Urfa Kebaby',baha:30,sany:0},beyti:{at:'Beyti Kebaby',baha:20,sany:0},kasarli:{at:'Kasarly Lule',baha:25,sany:0},sebzeli:{at:'Sebzeli Lule',baha:30,sany:0},pisse:{at:'Pisse-Fystykly Lule',baha:25,sany:0},sada:{at:'Sada Turkmen Lule',baha:30,sany:0},garysyk:{at:'Garysyk Doner',baha:30,sany:0},iskender:{at:'Iskender Doner',baha:45,sany:0},towukiskender:{at:'Towukly Iskender',baha:35,sany:0},lawashet:{at:'Lawasda Et Durum',baha:40,sany:0},lawashtowuk:{at:'Lawasda Towuk Durum',baha:30,sany:0},corekdenet:{at:'Corekde Et Doner',baha:30,sany:0},corekdetowuk:{at:'Corekde Towuk Doner',baha:25,sany:0},kola:{at:'Kola',baha:20,sany:0},fanta:{at:'Fanta',baha:20,sany:0}};
+var urlParams=new URLSearchParams(window.location.search);
+var stolParam=urlParams.get('stol');
+if(stolParam){document.getElementById('stol').value=stolParam;document.getElementById('stol').readOnly=true;}
+var menyu={nigiri:{at:'Nigiri',baha:25,sany:0},maki:{at:'Maki',baha:30,sany:0},sashimi:{at:'Sashimi',baha:25,sany:0},temaki:{at:'Temaki',baha:35,sany:0},california:{at:'California Roll',baha:30,sany:0},ebi:{at:'Ebi Nigiri',baha:30,sany:0},dragon:{at:'Dragon Roll',baha:50,sany:0},gunkan:{at:'Gunkan',baha:25,sany:0},adana:{at:'Adana Kebaby',baha:30,sany:0},urfa:{at:'Urfa Kebaby',baha:30,sany:0},beyti:{at:'Beyti Kebaby',baha:20,sany:0},kasarli:{at:'Kasarly Lule',baha:25,sany:0},sebzeli:{at:'Sebzeli Lule',baha:30,sany:0},pisse:{at:'Pisse-Fystykly Lule',baha:25,sany:0},sada:{at:'Sada Turkmen Lule',baha:30,sany:0},garysyk:{at:'Garysyk Doner',baha:30,sany:0},iskender:{at:'Iskender Doner',baha:45,sany:0},towukiskender:{at:'Towukly Iskender',baha:35,sany:0},lawashet:{at:'Lawasda Et Durum',baha:40,sany:0},lawashtowuk:{at:'Lawasda Towuk Durum',baha:30,sany:0},corekdenet:{at:'Corekde Et Doner',baha:30,sany:0},corekdetowuk:{at:'Corekde Towuk Doner',baha:25,sany:0},avokado:{at:'Avokado Tatly',baha:27,sany:0},
+  kola:{at:'Kola',baha:20,sany:0},fanta:{at:'Fanta',baha:20,sany:0}};
 function goshun(id,baha){menyu[id].sany++;document.getElementById(id).innerText=menyu[id].sany;jemiGuncelle()}
 function azalt(id){if(menyu[id].sany>0){menyu[id].sany--;document.getElementById(id).innerText=menyu[id].sany;jemiGuncelle()}}
 function jemiGuncelle(){var j=0;for(var k in menyu)j+=menyu[k].baha*menyu[k].sany;document.getElementById('jemi-baha').innerText=j}
